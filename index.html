@@ -43,8 +43,12 @@
         /* Главный экран (Заставка) */
         .hero {
             height: 100vh;
-            /* Вставляем картинку Без имени-1.png на фон и затемняем её для читаемости текста */
-            background: linear-gradient(rgba(15, 15, 17, 0.7), rgba(15, 15, 17, 0.9)), url('Без имени-1.png') center/cover no-repeat;
+            /* Разбито на отдельные свойства для лучшего контроля адаптивности */
+            background-image: linear-gradient(rgba(15, 15, 17, 0.7), rgba(15, 15, 17, 0.9)), url('Без имени-1.png');
+            background-size: cover;
+            background-position: center center; /* На ПК картинка по центру */
+            background-repeat: no-repeat;
+            
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -252,6 +256,13 @@
         }
 
         @media (max-width: 768px) {
+            /* СМЕЩАЕМ ФОТО НА ТЕЛЕФОНАХ, ЧТОБЫ БЫЛО ВИДНО ЛИЦО */
+            .hero {
+                /* Значение "80% center" смещает картинку так, чтобы фокус был на правой части. 
+                   Если лицо на фото находится слева, поменяйте "80%" на "20%" */
+                background-position: 80% center; 
+            }
+
             .typewriter { font-size: 1.8rem; }
             .btn-main { padding: 15px 30px; font-size: 1.1rem; }
             .section { padding: 60px 20px; }
@@ -269,9 +280,7 @@
             <div class="typewriter" id="typewriter"></div>
         </div>
         
-        <!-- Ссылка на будущий YouTube канал -->
-        <!-- Позже замени href="#" на ссылку формата href="https://youtube.com/..." -->
-        <a href="https://www.youtube.com/channel/UCNPrjO3UnnsJhqYsHhZ6u2A" target="_blank" class="btn-main">Смотреть портфолио</a>
+        <a href="#" target="_blank" class="btn-main">Смотреть портфолио</a>
 
         <div class="scroll-down">Скролль вниз ↓</div>
     </section>
@@ -282,7 +291,7 @@
         <div class="section-subtitle reveal">Создаю видео, которые досматривают до конца</div>
         
         <div class="about-content reveal">
-            <p>Привет! Я Ярослав Юрьевич, профессиональный видеомонтажер и motion-дизайнер. Моя главная цель — не просто склеить кадры под музыку, а создать <span class="highlight">захватывающую историю</span>, которая удержит внимание зрителя с первой до последней секунды.</p>
+            <p>Привет! Я профессиональный видеомонтажер и motion-дизайнер. Моя главная цель — не просто склеить кадры под музыку, а создать <span class="highlight">захватывающую историю</span>, которая удержит внимание зрителя с первой до последней секунды.</p>
             
             <p>В современном мире контента секунда скуки стоит зрителю клика мышкой. За 3 года плотной работы в сфере я вывел идеальную формулу удержания. Я знаю, как работают алгоритмы, как правильно расставлять визуальные и звуковые акценты, и как превратить сырой материал в продукт <span class="highlight">премиум-класса</span>.</p>
             
@@ -314,7 +323,6 @@
             <div>
                 <h3 style="color: #fff; margin-bottom: 20px; text-align: center;">Доверие топовых брендов</h3>
                 <div class="companies-list">
-                    <!-- Заглушки, которые можно заменить на реальные названия или логотипы (img) -->
                     <div class="company-item">Крупные YouTube-блогеры</div>
                     <div class="company-item">IT Компании</div>
                     <div class="company-item">Online Школы</div>
@@ -339,11 +347,10 @@
             if (index < text.length) {
                 typewriterElement.innerHTML += text.charAt(index);
                 index++;
-                setTimeout(type, 80); // скорость печати
+                setTimeout(type, 80); 
             }
         }
         
-        // Запускаем печать
         setTimeout(type, 300);
 
         // 2. Анимация появления элементов при скролле
@@ -352,7 +359,7 @@
             for (var i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight;
                 var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 120; // Порог видимости
+                var elementVisible = 120; 
 
                 if (elementTop < windowHeight - elementVisible) {
                     reveals[i].classList.add("active");
@@ -361,7 +368,7 @@
         }
 
         window.addEventListener("scroll", reveal);
-        reveal(); // Проверка при загрузке страницы
+        reveal(); 
     </script>
 </body>
 </html>
